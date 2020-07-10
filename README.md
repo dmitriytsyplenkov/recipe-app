@@ -1,2 +1,2 @@
 # recipe-app
-Recipe application with best food recipes in the world!
+Recipe application with the best food recipes around the world!
