@@ -1,5 +1,6 @@
 package com.dts.recipeapp.services;
 
+import com.dts.recipeapp.commands.RecipeCommand;
 import com.dts.recipeapp.converters.RecipeCommandToRecipe;
 import com.dts.recipeapp.converters.RecipeToRecipeCommand;
 import com.dts.recipeapp.domain.Recipe;
@@ -64,5 +65,24 @@ class RecipeServiceImplTest {
         assertEquals(recipes.size(),1);
         verify(recipeRepository, times(1)).findAll();
         verify(recipeRepository, never()).findById(anyLong());
+    }
+    @Test
+    public void getRecipeCoomandByIdTest() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
+
+        RecipeCommand commandById = recipeService.findCommandById(1L);
+
+        assertNotNull("Null recipe returned", commandById);
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
     }
 }
