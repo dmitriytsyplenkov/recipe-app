@@ -2,13 +2,11 @@ package com.dts.recipeapp.controllers;
 
 import com.dts.recipeapp.commands.RecipeCommand;
 import com.dts.recipeapp.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
+@Slf4j
 @Controller
 public class RecipeController {
 
@@ -19,17 +17,21 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    @GetMapping
     @RequestMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
         return "recipe/show";
     }
 
+    @GetMapping
     @RequestMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
         return  "recipe/recipeform";
     }
+
+    @GetMapping
     @RequestMapping("/recipe/new")
     public String newRecipe(Model model) {
         model.addAttribute("recipe", new RecipeCommand());
@@ -44,6 +46,18 @@ public class RecipeController {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
         return "redirect:/recipe/"+ savedCommand.getId()+"/show";
+    }
+
+    @GetMapping
+    @RequestMapping("/recipe/{id}/delete")
+    public String newRecipe(@PathVariable String id) {
+        log.debug("Deleting id");
+
+        recipeService.deleteById(Long.valueOf(id));
+
+        return "redirect:/";
+
+
     }
 
 }

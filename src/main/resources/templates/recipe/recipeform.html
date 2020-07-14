@@ -30,18 +30,18 @@
                 <input type="hidden" th:field="*{id}"/>
                     <div class="card border-dark m-3">
                         <div class="card-header">
-                            <h1>Edit Recipe Information</h1>
+                            <h3>Edit Recipe Information</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>Recipe Description:</label>
+                                    <label><b><em>Recipe Description:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{description}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>Categories:</label>
+                                    <label><b><em>Categories:</em></b></label>
                                 </div>
                                 <div class="col-md-9 form-group">
                                     <div class="radio">
@@ -60,15 +60,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>Prep Time:</label>
+                                    <label><b><em>Prep Time:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{prepTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>Cooktime:</label>
+                                    <label><b><em>Cooktime:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{cookTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>Difficulty:</label>
+                                    <label><b><em>Difficulty:</em></b></label>
                                     <select class="form-control">
                                         <option>Easy</option>
                                         <option>Medium</option>
@@ -78,15 +78,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>Servings:</label>
+                                    <label><b><em>Servings:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{servings}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>Source:</label>
+                                    <label><b><em>Source:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{source}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>URL:</label>
+                                    <label><b><em>URL:</em></b></label>
                                     <input type="text" class="form-control" th:field="*{url}"/>
                                 </div>
                             </div>
@@ -95,12 +95,15 @@
                     <div class="card border-dark m-3">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-11">
-                                    <h1 class="panel-title">Ingredients</h1>
+                                <div class="col-md-10">
+                                    <h3 class="panel-title">Ingredients</h3>
                                 </div>
-                                <div class="col-md-1">
-                                    <a class="btn btn-outline-dark" href="#" role="button">Edit</a>
+                                <div class="col-md-2">
+                                    <div class="col-md-2">
+                                        <a class="btn btn-outline-dark" href="#" role="button">Edit</a>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -121,7 +124,7 @@
                     </div>
                     <div class="card border-dark m-3">
                         <div class="card-header">
-                            <h1>Directions</h1>
+                            <h3>Directions</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -133,7 +136,7 @@
                     </div>
                     <div class="card border-dark m-3">
                         <div class="card-header">
-                            <h1>Notes</h1>
+                            <h3>Notes</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
