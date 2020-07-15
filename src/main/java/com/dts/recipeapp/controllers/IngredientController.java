@@ -1,6 +1,8 @@
 package com.dts.recipeapp.controllers;
 
 import com.dts.recipeapp.commands.IngredientCommand;
+import com.dts.recipeapp.commands.RecipeCommand;
+import com.dts.recipeapp.commands.UnitOfMeasureCommand;
 import com.dts.recipeapp.services.IngredientService;
 import com.dts.recipeapp.services.RecipeService;
 import com.dts.recipeapp.services.UnitOfMeasureService;
@@ -43,6 +45,25 @@ public class IngredientController {
 
         return "recipe/ingredient/show";
     }
+
+    @GetMapping
+    @RequestMapping("/recipe/{recipeId}/ingredient/new")
+    public String newIngredient(@PathVariable String recipeId, Model model) {
+
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        //todo check null value of command
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUom(new UnitOfMeasureCommand());
+
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+
+        return "recipe/ingredient/ingredientform";
+    }
+
 
     @GetMapping
     @RequestMapping("recipe/{recipeId}/ingredient/{id}/update")

@@ -30,7 +30,17 @@
             <div class="card border-dark">
 
                 <div class="card-header">
-                    <h3>Ingredients</h3>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3>Ingredients</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="col-md-2">
+                                <a class="btn btn-outline-dark" href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/new'}" role="button">New</a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="card-body">
 
