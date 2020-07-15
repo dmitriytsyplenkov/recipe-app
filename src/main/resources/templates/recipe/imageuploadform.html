@@ -25,24 +25,34 @@
 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="card-group">
                 <div class="card border-dark">
-                    <div class="card-header">
-                        <h3>Upload a new recipe image</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <form  action="http:\\localhost" method="post" enctype="multipart/form-data"
-                                       th:action="@{'/recipe/' + ${recipe.getId()} + '/image'}">
-                                    <label class="control-label"><b><em>Select File</em></b></label>
-                                    <input id="imagefile" name="imagefile" type="file" class="file">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                    <form action="http://localhost:8080" method="post" enctype="multipart/form-data"
+                          th:action="@{'/recipe/' + ${recipe.getId()} + '/image'}">
+                        <div class="card-header">
+                            <!--                        <h3>Upload a new recipe image</h3>-->
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4>Upload a new recipe image</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-5">
+                                    <label class="control-label"><b><em>Select File</em></b></label>
+                                    <input id="imagefile" name="imagefile" type="file" class="file">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
