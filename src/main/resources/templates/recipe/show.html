@@ -28,19 +28,33 @@
             <div class="row-cols-1 ">
                 <div class="card border-dark m-3">
                     <div class="card-header">
-                        <h3 th:text="${recipe.getDescription()}">Recipe Description Here!</h3>
+                        <div class = "row">
+                            <div class="col-md-10">
+                                <h3 th:text="${recipe.getDescription()}">Recipe Description Here!</h3>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-outline-dark" href="#"
+                                   th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <b><em>Categories</em></b>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-3">
                                 <ul>
                                     <li th:each="category : ${recipe.getCategories()}" th:text="${category.getDescription()}">cat one</li>
                                     <li th:remove="all">cat two</li>
                                     <li th:remove="all">cat three</li>
                                 </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="../../static/images/guacamole400x400WithX.jpg"
+                                     th:src="@{/images/guacamole400x400WithX.jpg}"
+                                     width="200" height="200">
+
                             </div>
                         </div>
                         <div class="row justify-content-center">

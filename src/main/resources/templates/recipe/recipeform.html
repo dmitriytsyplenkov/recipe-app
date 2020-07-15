@@ -72,12 +72,9 @@
                                     <select class="form-control" th:field="*{difficulty}">
                                         <option th:each="difficultyValue : ${T(com.dts.recipeapp.domain.Difficulty).values()}"
                                                 th:value="${difficultyValue.name()}"
-                                                th:text="${difficultyValue.name()}">val</option>
-                                    </select>
-                                    <select class="form-control" th:remove="all">
-                                        <option>Easy</option>
-                                        <option>Medium</option>
-                                        <option>Hard</option>
+                                                th:text="${difficultyValue.name()}">Easy</option>
+                                        <option th:remove="all">Medium</option>
+                                        <option th:remove="all">Hard</option>
                                     </select>
                                 </div>
                             </div>
