@@ -49,4 +49,5 @@ class ImageServiceImplTest {
         assertEquals(multipartFile.getBytes().length, savedRecipe.getImage().length);
 
     }
+
 }

@@ -34,7 +34,9 @@ class RecipeControllerTest {
     @BeforeEach
     public void setUp() {
         controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -53,6 +55,7 @@ class RecipeControllerTest {
                 .andExpect(model().attributeExists("recipe"));
         ;
     }
+
     @Test
     public void testPostNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
@@ -81,6 +84,7 @@ class RecipeControllerTest {
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
+
     @Test
     public void testDeleteAction() throws Exception {
 
