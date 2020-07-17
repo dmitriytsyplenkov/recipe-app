@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 form-group">
-                                <label><b><em>Recipe Description:</em></b></label>
+                                <label th:text="#{recipe.description}"><b><em>Recipe Description:</em></b></label>
                                 <input type="text" class="form-control" th:field="*{description}" th:class="${#fields.hasErrors('description')} ? 'form-control is-invalid':'form-control'"/>
                                 <div class="invalid-feedback">
                                     <ul>
