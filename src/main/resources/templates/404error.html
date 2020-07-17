@@ -23,8 +23,13 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <h1>404 Not found</h1>
+    <div class="col">
+        <div class="row justify-content-center">
+            <h1>404 Not found</h1>
+        </div>
+        <div class="row justify-content-center">
+            <p th:text="${exception.getMessage()}">Exception message</p>
+        </div>
     </div>
 
 </div>
