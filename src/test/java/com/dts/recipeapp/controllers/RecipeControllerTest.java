@@ -2,6 +2,7 @@ package com.dts.recipeapp.controllers;
 
 import com.dts.recipeapp.commands.RecipeCommand;
 import com.dts.recipeapp.domain.Recipe;
+import com.dts.recipeapp.excecptions.NotFoundException;
 import com.dts.recipeapp.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -88,5 +89,16 @@ class RecipeControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
         verify(recipeService).deleteById(anyLong());
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
     }
 }
