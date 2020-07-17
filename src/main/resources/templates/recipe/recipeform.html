@@ -27,130 +27,165 @@
     <div class="row row-cols-1 justify-content-center">
         <div class="col-md-6">
             <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger m-3">
+                    <p>Please Correct Errors Below</p>
+                </div>
                 <input type="hidden" th:field="*{id}"/>
-                    <div class="card border-dark m-3">
-                        <div class="card-header">
-                            <h3>Edit Recipe Information</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Recipe Description:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{description}"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Categories:</em></b></label>
-                                </div>
-                                <div class="col-md-9 form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="checkbox" value=""/>
-                                            Cat 1
-                                        </label>
-                                    </div>
-                                    <div class="radio" th:remove="all">
-                                        <label>
-                                            <input type="checkbox" value=""/>
-                                            Cat 2
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Prep Time:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{prepTime}"/>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Cooktime:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{cookTime}"/>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Difficulty:</em></b></label>
-                                    <select class="form-control" th:field="*{difficulty}">
-                                        <option th:each="difficultyValue : ${T(com.dts.recipeapp.domain.Difficulty).values()}"
-                                                th:value="${difficultyValue.name()}"
-                                                th:text="${difficultyValue.name()}">Easy</option>
-                                        <option th:remove="all">Medium</option>
-                                        <option th:remove="all">Hard</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Servings:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{servings}"/>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>Source:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{source}"/>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <label><b><em>URL:</em></b></label>
-                                    <input type="text" class="form-control" th:field="*{url}"/>
-                                </div>
-                            </div>
-                        </div>
+                <div class="card border-dark m-3">
+                    <div class="card-header">
+                        <h3>Edit Recipe Information</h3>
                     </div>
-                    <div class="card border-dark m-3">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <h3 class="panel-title">Ingredients</h3>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Recipe Description:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{description}" th:class="${#fields.hasErrors('description')} ? 'form-control is-invalid':'form-control'"/>
+                                <div class="invalid-feedback">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('description')}" th:text="${err}">Error</li>
+                                    </ul>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="col-md-2">
-                                        <a class="btn btn-outline-dark" href="#" role="button">Edit</a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
-                                        <li th:remove="all">1 Cup of milk</li>
-                                        <li th:remove="all">1 Teaspoon of chocolate</li>
-                                        <li th:each="ingredient : ${recipe.ingredients}"
-                                            th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.uom.getDescription() +
-                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
-                                        </li>
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Categories:</em></b></label>
+                            </div>
+                            <div class="col-md-9 form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="checkbox" value=""/>
+                                        Cat 1
+                                    </label>
+                                </div>
+                                <div class="radio" th:remove="all">
+                                    <label>
+                                        <input type="checkbox" value=""/>
+                                        Cat 2
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Prep Time:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{prepTime}" th:class="${#fields.hasErrors('prepTime')} ? 'form-control is-invalid':'form-control'"/>
+                                <div class="invalid-feedback">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('prepTime')}" th:text="${err}"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Cooktime:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{cookTime}" th:class="${#fields.hasErrors('cookTime')} ? 'form-control is-invalid':'form-control'"/>
+                                <div class="invalid-feedback">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('cookTime')}" th:text="${err}"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Difficulty:</em></b></label>
+                                <select class="form-control" th:field="*{difficulty}">
+                                    <option th:each="difficultyValue : ${T(com.dts.recipeapp.domain.Difficulty).values()}"
+                                            th:value="${difficultyValue.name()}"
+                                            th:text="${difficultyValue.name()}">Easy
+                                    </option>
+                                    <option th:remove="all">Medium</option>
+                                    <option th:remove="all">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Servings:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{servings}" th:class="${#fields.hasErrors('servings')} ? 'form-control is-invalid':'form-control'"/>
+                                <div class="invalid-feedback">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('servings')}" th:text="${err}"/>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label><b><em>Source:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{source}"/>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label><b><em>URL:</em></b></label>
+                                <input type="text" class="form-control" th:field="*{url}" th:class="${#fields.hasErrors('url')} ? 'form-control is-invalid':'form-control'"/>
+                                <div class="invalid-feedback">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('url')}" th:text="${err}"/>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card border-dark m-3">
-                        <div class="card-header">
-                            <h3>Directions</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea></div>
-
+                </div>
+                <div class="card border-dark m-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3 class="panel-title">Ingredients</h3>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card border-dark m-3">
-                        <div class="card-header">
-                            <h3>Notes</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                            <div class="col-md-2">
+                                <div class="col-md-2">
+                                    <a class="btn btn-outline-dark" href="#" role="button">Edit</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div class="row m-3">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
+                                    <li th:remove="all">1 Cup of milk</li>
+                                    <li th:remove="all">1 Teaspoon of chocolate</li>
+                                    <li th:each="ingredient : ${recipe.ingredients}"
+                                        th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.uom.getDescription() +
+                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="card border-dark m-3">
+                    <div class="card-header">
+                        <h3>Directions</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <textarea class="form-control" rows="3" th:field="*{directions}" th:class="${#fields.hasErrors('directions')} ? 'form-control is-invalid':'form-control'"></textarea>
+                                <div class="invalid-feedback" >
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('directions')}" th:text="${err}"/>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-dark m-3">
+                    <div class="card-header">
+                        <h3>Notes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-3">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </div>
 
             </form>
         </div>
