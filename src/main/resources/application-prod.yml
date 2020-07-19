@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/recipeapp_prod
+    url: jdbc:mysql://localhost:3306/recipeapp_prod?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: recipeapp_prod_user
     password: dts
   jpa:
