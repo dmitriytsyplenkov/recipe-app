@@ -2,11 +2,10 @@ package com.dts.recipeapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@TestPropertySource(
-        locations = "classpath:application-default.properties")
+@ActiveProfiles(profiles = "default")
 class RecipeAppApplicationTests {
 
     @Test
