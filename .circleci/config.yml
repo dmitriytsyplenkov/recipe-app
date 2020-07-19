@@ -47,6 +47,7 @@ jobs:
             name: Send to CodeCov
             command: bash <(curl -s https://codecov.io/bash)
 
-            env:
-              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            with:
+
+              token: ${{ secrets.CODECOV_TOKEN }}
 
